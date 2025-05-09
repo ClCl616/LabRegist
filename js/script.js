@@ -22,7 +22,7 @@ function checkLoginInfo() {
     if (user) {
         if (password === user.password) {
             alert('로그인에 성공하였습니다. 확인을 누르면 페이지가 이동됩니다.');
-            window.location.href = '../html/main.html';
+            window.location.href = './html/main.html';
         } else {
             errorMessage.textContent = '사용자 이름이나 비밀번호가 잘못되었습니다. 다시 시도해주세요.';
         }
