@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/main.css">
+        <title>메인 페이지</title>
+    </head>
+    <body>
+
+        <div class="main-container">
+            <h2 id="welcomeMessage">환영합니다!</h2>
+
+            <p>이곳은 메인 페이지입니다. 여기서 프로필을 설정하고 다른 기능을 이용할 수 있습니다.</p>
+
+            <div class="form-group">
+                <p>
+                    <a href="./profile.html" id="profileLink">프로필 설정</a>
+                </p>
+            </div>
+
+            <button id="logoutButton">로그아웃</button>
+
+        </div>
+
+        <script src="js/script.js"></script>
+        
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                requireLogin();
+                loadProfile();
+
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                const welcomeEl = document.getElementById("welcomeMessage");
+                if (currentUser && welcomeEl) {
+                    welcomeEl.textContent = `환영합니다, ${currentUser.username}님!`;
+                }
+
+                document.getElementById('logoutButton')?.addEventListener('click', () => {
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'index.html';
+                });
+            });
+
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+        </script>
+
+    </body>
+</html>
